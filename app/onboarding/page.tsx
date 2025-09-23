@@ -15,9 +15,7 @@ interface iAppProps {
   firstName: string,
 }
 
-export default function Onboarding({
-  firstName
-}: iAppProps) {
+export default function Onboarding(props: iAppProps) {
 
  // const session = await requireUser()
 
@@ -61,7 +59,7 @@ export default function Onboarding({
                     name={fields.firstName.name}
                     key={fields.firstName.key}
                     placeholder='Jhon'
-                    defaultValue={firstName}
+                    //defaultValue={firstName}
                   />
                   <p className='text-red-500 text-sm'>{fields.firstName.errors}</p>
                 </div>
