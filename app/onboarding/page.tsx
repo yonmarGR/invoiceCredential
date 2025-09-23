@@ -11,11 +11,9 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import { onboardingSchema } from "@/app/utils/zodSchemas";
 //import { requireUser } from "@/app/utils/hooks";
 
-interface iAppProps {
-  firstName: string,
-}
 
-export default function Onboarding(props: iAppProps) {
+
+export default function Onboarding() {
 
  // const session = await requireUser()
 
@@ -59,7 +57,7 @@ export default function Onboarding(props: iAppProps) {
                     name={fields.firstName.name}
                     key={fields.firstName.key}
                     placeholder='Jhon'
-                    //defaultValue={firstName}
+                    
                   />
                   <p className='text-red-500 text-sm'>{fields.firstName.errors}</p>
                 </div>
