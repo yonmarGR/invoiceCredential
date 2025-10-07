@@ -38,6 +38,16 @@ export default function RegisterPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+
+            {/* Add form-level error display */}
+            {form.errors && form.errors.length > 0 && (
+              <div className="mb-4 p-3 text-sm text-destructive bg-destructive/15 rounded-md">
+                {form.errors.map((error, index) => (
+                  <p key={index}>{error}</p>
+                ))}
+              </div>
+            )}
+
             <form 
               action={formAction}
               id={form.id}

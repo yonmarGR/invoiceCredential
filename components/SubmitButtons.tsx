@@ -20,30 +20,22 @@ interface iAppProps {
     | null 
     | undefined
   className?: string
+  disabled?: boolean
 }
 
-export function SubmitButton({ text, variant }: iAppProps) {
+export function SubmitButton({ text, variant, className, disabled }: iAppProps) {
     const { pending } = useFormStatus()
+
   return (
-    <>
-      {pending ? ( 
-        <Button 
-          disabled
-          variant={variant}
-          className='w-full'
-        >
-          <Loader2 className='size-4 mr-2 animate-spin' /> Please wait...
-        </Button>
-      ) : (
-        <Button
-          type='submit'
-          variant={variant}
-          className='w-full '
-        >
-          { text }
-        </Button>
-      )}
-    </>
+     <Button 
+      type='submit'
+      variant={variant}
+      className={cn('w-full', className)}
+      disabled={pending || disabled}
+    >
+      {pending && <Loader2 className='size-4 mr-2 animate-spin' />}
+      {pending ? "Please wait..." : text}
+    </Button>
   )
 }
 

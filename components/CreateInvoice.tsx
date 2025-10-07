@@ -103,7 +103,7 @@ export function CreateInvoice({
 
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             <div>
-              <Label>Invoice No.</Label>
+              <Label className="mb-2">Invoice No.</Label>
               <div className="flex">
                 <span className="px-3 border border-r-0 rounded-l-md bg-muted flex items-center">
                   #
@@ -120,7 +120,7 @@ export function CreateInvoice({
             </div>
 
             <div>
-              <Label>Currency</Label>
+              <Label className="mb-2">Currency</Label>
               <Select
                 name={fields.currency.name}
                 key={fields.currency.key}
@@ -141,7 +141,7 @@ export function CreateInvoice({
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-              <Label>From</Label>
+              <Label className="mb-2">From</Label>
               <div className="space-y-2">
                 <Input 
                   name={fields.fromName.name}
@@ -168,7 +168,7 @@ export function CreateInvoice({
             </div>
 
             <div>
-              <Label>To</Label>
+              <Label className="mb-2">To</Label>
               <div className="space-y-2">
                 <Input 
                   name={fields.clientName.name}
@@ -197,7 +197,7 @@ export function CreateInvoice({
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-              <Label>Date</Label>
+              <Label className="mb-2">Date</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline" className="text-left justify-start">
@@ -225,7 +225,7 @@ export function CreateInvoice({
             </div>
 
             <div className="w-fit">
-              <Label>Invoice Due</Label>
+              <Label className="mb-2">Invoice Due</Label>
               <Select
                 name={fields.dueDate.name}
                 key={fields.dueDate.key}

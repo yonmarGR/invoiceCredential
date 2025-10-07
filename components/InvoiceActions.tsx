@@ -18,20 +18,7 @@ interface iAppProps {
 
 export function InvoiceActions({ id, status } : iAppProps) {
 
-  const handleSendReminder = () => {
-    toast.promise(fetch(`/api/email/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }), {
-      loading: 'Sending reminder email...',
-      success: 'Reminder email sent successfully',
-      error: 'Failed to send reminder email'
-    }
-   )
-  }
-
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -50,9 +37,7 @@ export function InvoiceActions({ id, status } : iAppProps) {
             <DownloadCloudIcon className='size-4 mr-2' /> Download
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleSendReminder} >
-          <Mail className='size-4 mr-2' /> Reminder Email
-        </DropdownMenuItem>
+        {/*  */}
         <DropdownMenuItem asChild>
           <Link href={`/dashboard/invoices/${id}/delete`}>
             <Trash className='size-4 mr-2' /> Delete

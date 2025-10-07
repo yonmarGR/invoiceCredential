@@ -19,10 +19,21 @@ export async function registerUser(prevState: any, formData: FormData) {
     return submission.reply();
   }
 
+   // Check if user already exists
+  const existingUser = await prisma.user.findUnique({
+    where: { email: submission.value.email },
+  });
+
+  if (existingUser) {
+    return submission.reply({
+      formErrors: ["User with this email already exists"],
+    });
+  }
+
+
   const hashedPassword = await bcrypt.hash(submission.value.password, 10);
 
-  const data = await prisma.user.create({
-    
+  await prisma.user.create({
     data: {
       firstName: submission.value.firstName,
       password: hashedPassword,
@@ -44,6 +55,7 @@ export async function loginUser(prevState: any, formData: FormData) {
   }
 
   
+  try {
     const { email, password } = submission.value;
     const response = await signIn("credentials", {
       email,
@@ -51,9 +63,15 @@ export async function loginUser(prevState: any, formData: FormData) {
       redirect: false,
     });
 
-   if (response?.error) {
+    if (response?.error) {
+      return submission.reply({
+        formErrors: ["Invalid email or password"],
+      });
+    }
+  } catch (error) {
+    console.error("Login error:", error);
     return submission.reply({
-      formErrors: ["Invalid email or password"],
+      formErrors: ["An error occurred during login"],
     });
   }
 

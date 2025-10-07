@@ -17,6 +17,7 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import Link from "next/link";
 import { loginUser } from "@/app/actions";
 import { useActionState, useState } from "react";
+import { PasswordInput } from "@/components/PasswordInput";
 
 //mail iron@mail.com
 //password Iron1234*
@@ -46,6 +47,15 @@ export default function LoginPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+
+            {form.errors && form.errors.length > 0 && (
+              <div className="mb-4 p-3 text-sm text-destructive bg-destructive/15 rounded-md">
+                {form.errors.map((error, index) => (
+                  <p key={index}>{error}</p>
+                ))}
+              </div>
+            )}
+
             <form
               onSubmit={form.onSubmit}
               action={formAction}
@@ -60,6 +70,7 @@ export default function LoginPage() {
                   type="email"
                   placeholder="your@email.com"
                   required
+                  key={fields.email.key}
                 />
                 <p className="text-sm text-destructive">
                   {fields.email.errors}
@@ -67,12 +78,12 @@ export default function LoginPage() {
               </div>
               <div className="flex flex-col gap-2">
                 <Label htmlFor="password">Password</Label>
-                <Input
+                <PasswordInput
                   id="password"
                   name={fields.password.name}
-                  type="password"
                   placeholder="••••••••"
                   required
+                  key={fields.password.key}
                 />
                 <p className="text-sm text-destructive">
                   {fields.password.errors}
